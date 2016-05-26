@@ -1,4 +1,4 @@
-TO run the file:
+To run the file:
 
 1. Create new C# ASP .NET Web application in Visual Studio 2015 and name it "WebAppInventory".  Import these files from Github
 - InventoryError.cs
@@ -10,13 +10,13 @@ TO run the file:
 - Resource1.Designer.cs
 2. Build solution.
 3. Right click on InventoryService class and create unit tets. Replace unit test file with "InventoryServiceTest.cs" from Github. Add reference to "System.Web.Services" to fix build error. Run unit tests. 
-2. Create a new C# console application in Visual Studio 2015 and name it "InventoryClient". Import files from "InventoryClient" fodler on GitHub.  Add reference to "SYstem.Web.Services" upon bild error. Run client application and make note of messages displayed regarding expired and removed inventory items. 
+4. Create a new C# console application in Visual Studio 2015 and name it "InventoryClient". Import "program.cs" file from GitHub.  Add reference to "System.Web.Services" on build error. Run client application and make note of messages displayed regarding expired and removed inventory items. 
 
 
 
 Design docuemntation:
 
-I have 10 years .NET developemnt experience, but new to web services. My design therefore may have some flows. 
+I am new to web services. My design therefore may have some flows. 
 
 InventoryService.asmx: implements a web service in C# and exposes the following web methods:
 
@@ -55,4 +55,14 @@ InventoryService.asmx: implements a web service in C# and exposes the following 
 	1.  When a new item is added to the inventory the service checks if it's expired and notifies all subscribers. 
 	2. Using a timer, the service periodicaly checks for newly expired items and notifies all subscribers. For testing pourposes the timeout value for the timer is set to 1 minute. In production it may be acceptable to set it to a much bigger value, like 24 hours. We should consider making the timeout value a setting or a public property, so it can be changed. 
 	 
-IventoryItem.cs: Implements InventoryItem class.
+IventoryItem.cs: Implements InventoryItem class
+
+InventoryError.cs: Implements class for errors.
+
+NotificationMessage.cs: Implements notification message class to notify client of inventory item removal and expiration. 
+
+InventoryServiceTest.cs: Implements unit test for InventoryService class. Because of lack of time I have not added unit tests for the other classes. For production code, all classes should be unit tested. 
+
+program.cs: Web service client application to test notifications sent by the web service. 
+
+
